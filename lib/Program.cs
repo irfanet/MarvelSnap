@@ -11,6 +11,15 @@ using lib.players;
 
 class Program
 {
+	// TODO 
+	// implement list card on location
+	// implement score calculation
+	// implement Card on Deck 
+	// implement Serialization on Cards
+	// Program.cs is too coupled need improvment
+	// clears unusable function
+	// implement delegate to notify user 
+	// implement card skill & location effect
 	static void Main()
 	{
 		Players p1 = new(1, "Irfan");
@@ -21,13 +30,26 @@ class Program
 		Cards card3 = new(3, "Sentinel", "Sentinel", CardType.Attack, 2, 3, "Add another Sentinel to your hand");
 		Cards card4 = new(4, "Iron Man", "Iron Man", CardType.Attack, 5, 0, "Your total Power is doubled at this location");
 		Cards card5 = new(5, "Hulk", "Hulk", CardType.Attack, 6, 12, "HULK SMASH!");
-		Cards card6 = new(6, "Hulk", "Hulk", CardType.Attack, 6, 12, "HULK SMASH!");
+		Cards card6 = new(6, "Mister Fantastic", "Mister Fantastic", CardType.Attack, 2, 3, "Adjacent locations have +2 Power.");
 		Cards card7 = new(7, "Juggernaut", "Juggernaut", CardType.Attack, 3, 3, "If your opponent played cards here this turn, move them randomly.");
 		Cards card8 = new(8, "Sandman", "Sandman", CardType.Attack, 5, 4, "Players can only play 1 card a turn");
 		Cards card9 = new(9, "Aero", "Aero", CardType.Attack, 5, 8, "Move the last enemy card played this turn to this location.");
 		Cards card10 = new(10, "Elektra", "Elektra", CardType.Attack, 1, 1, "Destroy a random enemy 1-Cost card at this location.");
 		Cards card11 = new(11, "Nebula", "Nebula", CardType.Attack, 1, 1, "Each turn your opponent doesn't play a card here, +2 Power. (except the turn you play this)");
-		Cards card12 = new(12, "Hulk", "Hulk", CardType.Attack, 6, 12, "HULK SMASH!");
+		Cards card12 = new(12, "Deathlok", "Deathlok", CardType.Attack, 3, 5, "Destroy your other cards at this location.");
+
+		Cards card111 = new(13, "Hawkeys", "Hawkeys", CardType.Attack, 1, 1, "Location next turn, +3 Power");
+		Cards card222 = new(14, "Medusa", "Medusa", CardType.Attack, 2, 2, "If this is at middle location, +3 Power");
+		Cards card333 = new(15, "Sentinel", "Sentinel", CardType.Attack, 2, 3, "Add another Sentinel to your hand");
+		Cards card444 = new(16, "Iron Man", "Iron Man", CardType.Attack, 5, 0, "Your total Power is doubled at this location");
+		Cards card555 = new(17, "Hulk", "Hulk", CardType.Attack, 6, 12, "HULK SMASH!");
+		Cards card666 = new(18, "Mister Fantastic", "Mister Fantastic", CardType.Attack, 2, 3, "Adjacent locations have +2 Power.");
+		Cards card777 = new(19, "Juggernaut", "Juggernaut", CardType.Attack, 3, 3, "If your opponent played cards here this turn, move them randomly.");
+		Cards card888 = new(20, "Sandman", "Sandman", CardType.Attack, 5, 4, "Players can only play 1 card a turn");
+		Cards card999 = new(21, "Aero", "Aero", CardType.Attack, 5, 8, "Move the last enemy card played this turn to this location.");
+		Cards card100 = new(22, "Elektra", "Elektra", CardType.Attack, 1, 1, "Destroy a random enemy 1-Cost card at this location.");
+		Cards card110 = new(23, "Nebula", "Nebula", CardType.Attack, 1, 1, "Each turn your opponent doesn't play a card here, +2 Power. (except the turn you play this)");
+		Cards card120 = new(24, "Deathlok", "Deathlok", CardType.Attack, 3, 5, "Destroy your other cards at this location.");
 
 		List<Cards> listCards = new()
 		{
@@ -45,8 +67,24 @@ class Program
 			card12
 		};
 
+		List<Cards> listCards2 = new()
+		{
+			card111,
+			card222,
+			card333,
+			card444,
+			card555,
+			card666,
+			card777,
+			card888,
+			card999,
+			card100,
+			card110,
+			card120
+		};
+
 		PlayerData p1Data = new(listCards, PlayerStatus.OnGoing);
-		PlayerData p2Data = new(listCards, PlayerStatus.OnGoing);
+		PlayerData p2Data = new(listCards2, PlayerStatus.OnGoing);
 
 		GameController gameController = new GameController();
 		gameController.AddCardsToDeck(p1, p1Data);
@@ -66,102 +104,64 @@ class Program
 		int turnCounter = 0;
 
 		Dictionary<Players, PlayerData> playerData = gameController.GetPlayerData();
-		// while (turnCounter <= maxTurn)
-		// {
-		// 	turnCounter++;
-		// 	foreach (var currentPlayer in playerData)
-		// 	{
-		// 		Console.WriteLine("Turn = {0}", turnCounter);
-		// 		currentPlayer.Key.GetName().Dump();
-		// 		Console.WriteLine(currentPlayer.Value.GetEnergy());
-		// 		Console.WriteLine(currentPlayer.Value.GetScore());
-		// 		gameController.AddCardToDeck(currentPlayer.Key, turnCounter);
-		// 		foreach (var element in gameController.GetCardsFromDeck())
-		// 		{
-		// 			element.Key.GetName().Dump();
-		// 			foreach (var e in element.Value)
-		// 			{
-		// 				e.GetImage().Dump();
-		// 			}
-		// 		}
-		// 	}
-		// }
-
+		// List<Cards> player1 = gameController.GetCardsOnHand(Player);
+		// List<Cards> player2 = gameController.GetCardsOnHand(Player);
 		while (turnCounter <= maxTurn)
 		{
 			turnCounter++;
 			foreach (var e in playerData)
 			{
 				e.Value.SetEnergy(turnCounter);
-				$"=================Player {e.Key.GetId()} : {e.Key.GetName()}===============".Dump();
+				$"================= Player {e.Key.GetId()} : {e.Key.GetName()} ===============".Dump();
 				$"Turn = {turnCounter} / {maxTurn}".Dump();
 				$"Energy: {e.Value.GetEnergy()}".Dump();
 				// Console.WriteLine(e.Value.GetScore());
 
 				int CardLimit = 0;
-				foreach (var y in e.Value.GetPlayerCards())
+				foreach (var y in e.Value.GetPlayerCards().Take(6))
 				{
-					if (turnCounter == 1)
+					if (!y.isUsed())
 					{
 						$"-------------- Card Id : {y.GetId()} ---------------".Dump();
 						$"Cost: {y.GetEnergyCost()} \t\t\t".DumpThis();
 						$"Power: {y.GetPower()}".Dump();
 						$"\t\t {y.GetName()}".Dump();
-						$"< {y.GetDescription()} >".Dump();
+						$"[ {y.GetDescription()} ]".Dump();
 						Console.WriteLine("------------------------------------------");
 						y.RevealCard();
-						CardLimit++;
-						if (CardLimit == 4)
-						{
-							break;
-						}
-					}else{
-						if (!y.IsReveal())
-						{
-							CardLimit = 0;
-							$"-------------- Card Id : {y.GetId()} ---------------".Dump();
-							$"Cost: {y.GetEnergyCost()} \t\t\t".DumpThis();
-							$"Power: {y.GetPower()}".Dump();
-							$"\t\t {y.GetName()}".Dump();
-							$"< {y.GetDescription()} >".Dump();
-							Console.WriteLine("------------------------------------------");
-							y.RevealCard();
-							CardLimit++;
-							if (CardLimit == 1)
-							{
-								break;
-							}
-						}
 					}
 
 				}
 
 				"".Dump();
-				"===============Location===============".Dump();
+				"=============== Location ==============".Dump();
 				foreach (var locationElement in listLocation)
 				{
-					locationElement.GetId().Dump();
-					locationElement.GetName().Dump();
+					$"{locationElement.GetId()}. {locationElement.GetName()}".DumpThis();
 					locationElement.GetEffect().Dump();
 				}
-				"Pick your card: ".Dump();
-				int inputCard = int.Parse(Console.ReadLine());
-				inputCard.Dump();
-				if (e.Value.GetCard(inputCard).GetEnergyCost() <= e.Value.GetEnergy())
+				bool isCorrectInput = false;
+				while (!isCorrectInput)
 				{
-					"Success".Dump();
+					"Pick your card: ".Dump();
+					int inputCard = int.Parse(Console.ReadLine());
+					if (e.Value.GetCard(inputCard).GetEnergyCost() <= e.Value.GetEnergy())
+					{
+						"Success select card".Dump();
+						e.Value.GetCard(inputCard).UseCard();
+						isCorrectInput = true;
+					}
+					"ERROR! Lack Energy".Dump();
 				}
-				else
-				{
-					"Lack Energy".Dump();
-				}
+
 
 				"Select location: ".Dump();
 				int? inputLocation = int.Parse(Console.ReadLine());
 				inputLocation?.Dump();
-				// Console.Clear();
+				Console.Clear();
 			}
 		}
+		// Console.WriteLine(game.CheckWinner());
 	}
 
 

@@ -22,6 +22,10 @@ public class Location
 	}
 
 	public void AddCardsToLocation(Players players, Cards cards){
+		if(_listCardsOnLocation==null)
+		{
+			// _listCardsOnLocation.Add(players)			
+		}
 		_listCardsOnLocation[players].Add(cards);
 	}
 

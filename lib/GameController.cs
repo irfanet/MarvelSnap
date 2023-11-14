@@ -81,10 +81,14 @@ public class GameController
 	public Dictionary<Players, PlayerData> GetPlayersData(){
 		return _playersData;
 	}
-
-	public void PutCardToLocation(Players players, int selectedCard, int selectedLocation){
-		
+	
+	public void Surrender(Players players)
+	{
+		_playersData[players].SetStatus(PlayerStatus.Lose);
+		string result = _playersData[players].GetStatus().ToString();
+		Console.WriteLine($"{players.GetName()} {result}");
 	}
+
 
 
 	

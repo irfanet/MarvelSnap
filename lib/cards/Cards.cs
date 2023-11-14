@@ -85,3 +85,78 @@ public class Cards : ICards
 
 }
 	
+
+
+
+
+
+
+public interface ICard
+{
+	public int Id { get; set; }
+	public string Name { get; set; }
+	public string Description { get; set; }
+	public CardType Type { get; set; }
+	public int Power { get; set; }
+	public int EnergyCost { get; set; }
+
+	void SpecialSkill(GameController game);
+}
+public class Sentinel : ICard
+{
+    public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string Description { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public CardType Type { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int Power { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int EnergyCost { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public void SpecialSkill(GameController game)
+    {
+		
+        game.AddCardsToDeck(game.GetCurrentPlayer(), )
+    }
+}
+
+
+// Player ---
+
+// Location :
+// - A (player)
+// 	Player --- total point :
+// 	-
+// 	-
+// 	-
+// 	Player --- total point : 
+// 	-
+// 	-
+// 	-
+// - B (player)
+// 	Player --- total point :
+// 	-
+// 	-
+// 	-
+// 	Player --- total point : 
+// 	-
+// 	-
+// 	-
+// - C (player)
+// 	Player --- total point :
+// 	-
+// 	-
+// 	-
+// 	Player --- total point : 
+// 	-
+// 	-
+// 	-
+
+// List Card :
+// -
+// -
+// -
+// -
+// -
+
+// Cara :
+// - Skip Turn
+// - Take Card

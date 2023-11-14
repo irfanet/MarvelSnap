@@ -9,8 +9,6 @@ public class PlayerData
 	private int _energy;
 	private PlayerStatus _status;
 
-
-	
 	public PlayerData(List<Cards> cards, PlayerStatus status)
 	{
 		_listCard = cards;
