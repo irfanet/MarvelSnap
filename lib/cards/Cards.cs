@@ -9,7 +9,9 @@ public class Cards : ICards
 	private int _power;
 	private int _energyCost;
 	private string _description;
-	private bool _isReveal;
+	private bool _isUsed = false;
+
+	private bool _isReveal = false;
 	
 	public Cards(int id, string name, string image, CardType type, int energyCost, int power, string description)
 	{
@@ -62,8 +64,18 @@ public class Cards : ICards
 		return _type;
 	}
 	
-	public bool IsReveal()
+	public void UseCard(){
+		_isUsed = true;
+	}
+	public bool isUsed()
 	{
+		return _isUsed;
+	}
+
+	public void RevealCard(){
+		_isReveal = true;
+	}
+	public bool IsReveal(){
 		return _isReveal;
 	}
 	

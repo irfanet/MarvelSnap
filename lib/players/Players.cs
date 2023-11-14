@@ -10,12 +10,12 @@ public class Players : IPlayers
 	}
 	public int GetId()
 	{
-		throw new NotImplementedException();
+		return _id;
 	}
 
-	public int GetName()
+	public string GetName()
 	{
-		throw new NotImplementedException();
+		return _name;
 	}
 
 }

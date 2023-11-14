@@ -11,5 +11,5 @@ public interface ICards
 	string GetDescription();
 	void Skill();
 	
-	bool IsReveal();
+	bool isUsed();
 }
