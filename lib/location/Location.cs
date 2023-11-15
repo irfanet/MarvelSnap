@@ -1,5 +1,5 @@
-using lib.cards;
-using lib.players;
+using lib.card;
+using lib.player;
 
 namespace lib.location;
 
@@ -10,8 +10,8 @@ public class Location
 	private LocationType _type;
 	private string _effect;
 	private int _turn;
-	private List<Cards> _listCards = new();
-	private Dictionary<Players, List<Cards>> _listCardsOnLocation = new();
+	private List<Card> _listCards = new();
+	private Dictionary<Player, List<Card>> _listCardsOnLocation = new();
 	
 	public Location(int id, string name, string effect, int turn)
 	{
@@ -21,7 +21,7 @@ public class Location
 		_turn = turn;
 	}
 
-	public void AddCardsToLocation(Players players, Cards cards){
+	public void AddCardsToLocation(Player players, Card cards){
 		if(_listCardsOnLocation==null)
 		{
 			// _listCardsOnLocation.Add(players)			
@@ -29,7 +29,7 @@ public class Location
 		_listCardsOnLocation[players].Add(cards);
 	}
 
-	public Dictionary<Players, List<Cards>> GetCardsOnLocation(){
+	public Dictionary<Player, List<Card>> GetCardsOnLocation(){
 		return _listCardsOnLocation;
 	}
 

@@ -1,6 +1,6 @@
-namespace lib.cards;
+namespace lib.card;
 
-public class Cards : ICards
+public class Card : ICard
 {
 	private int _id;
 	private string _name;
@@ -13,7 +13,7 @@ public class Cards : ICards
 
 	private bool _isReveal = false;
 	
-	public Cards(int id, string name, string image, CardType type, int energyCost, int power, string description)
+	public Card(int id, string name, string image, CardType type, int energyCost, int power, string description)
 	{
 		_id = id;
 		_name = name;
@@ -91,7 +91,7 @@ public class Cards : ICards
 
 
 
-public interface ICard
+public interface ICardTemp
 {
 	public int Id { get; set; }
 	public string Name { get; set; }
@@ -102,7 +102,7 @@ public interface ICard
 
 	void SpecialSkill(GameController game);
 }
-public class Sentinel : ICard
+public class Sentinel : ICardTemp
 {
     public int Id { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -114,7 +114,7 @@ public class Sentinel : ICard
     public void SpecialSkill(GameController game)
     {
 		
-        game.AddCardsToDeck(game.GetCurrentPlayer(), )
+        // game.AddCardsToDeck(game.GetCurrentPlayer(), )
     }
 }
 

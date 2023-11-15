@@ -1,15 +1,15 @@
-using lib.cards;
+using lib.card;
 
-namespace lib.players;
+namespace lib.player;
 
 public class PlayerData
 {
-	private List<Cards> _listCard;
+	private List<Card> _listCard;
 	private int _score;
 	private int _energy;
 	private PlayerStatus _status;
 
-	public PlayerData(List<Cards> cards, PlayerStatus status)
+	public PlayerData(List<Card> cards, PlayerStatus status)
 	{
 		_listCard = cards;
 		_score = 0;
@@ -17,7 +17,7 @@ public class PlayerData
 		_status = status;
 	}
 
-	public List<Cards> GetPlayerCards(){
+	public List<Card> GetPlayerCards(){
 		return _listCard;
 	}
 
@@ -45,7 +45,7 @@ public class PlayerData
 		return _score;
 	}
 
-	public Cards GetCard(int id){
+	public Card GetCard(int id){
 		return _listCard.Find(x => x.GetId() == id);
 	}
 }

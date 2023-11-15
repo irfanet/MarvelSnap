@@ -1,9 +1,10 @@
-namespace lib.cards;
+namespace lib.card;
 
 public enum CardType
 {
 IronMan,
 HawkEye,
+Attack
 
 }
 

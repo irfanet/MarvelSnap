@@ -5,9 +5,9 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using lib;
-using lib.cards;
+using lib.card;
 using lib.location;
-using lib.players;
+using lib.player;
 
 class Program
 {
@@ -22,36 +22,36 @@ class Program
 	// implement card skill & location effect
 	static void Main()
 	{
-		Players p1 = new(1, "Irfan");
-		Players p2 = new(2, "Nafri");
+		Player p1 = new(1, "Irfan");
+		Player p2 = new(2, "Nafri");
 
-		Cards card1 = new(1, "Hawkeys", "Hawkeys", CardType.Attack, 1, 1, "Location next turn, +3 Power");
-		Cards card2 = new(2, "Medusa", "Medusa", CardType.Attack, 2, 2, "If this is at middle location, +3 Power");
-		Cards card3 = new(3, "Sentinel", "Sentinel", CardType.Attack, 2, 3, "Add another Sentinel to your hand");
-		Cards card4 = new(4, "Iron Man", "Iron Man", CardType.Attack, 5, 0, "Your total Power is doubled at this location");
-		Cards card5 = new(5, "Hulk", "Hulk", CardType.Attack, 6, 12, "HULK SMASH!");
-		Cards card6 = new(6, "Mister Fantastic", "Mister Fantastic", CardType.Attack, 2, 3, "Adjacent locations have +2 Power.");
-		Cards card7 = new(7, "Juggernaut", "Juggernaut", CardType.Attack, 3, 3, "If your opponent played cards here this turn, move them randomly.");
-		Cards card8 = new(8, "Sandman", "Sandman", CardType.Attack, 5, 4, "Players can only play 1 card a turn");
-		Cards card9 = new(9, "Aero", "Aero", CardType.Attack, 5, 8, "Move the last enemy card played this turn to this location.");
-		Cards card10 = new(10, "Elektra", "Elektra", CardType.Attack, 1, 1, "Destroy a random enemy 1-Cost card at this location.");
-		Cards card11 = new(11, "Nebula", "Nebula", CardType.Attack, 1, 1, "Each turn your opponent doesn't play a card here, +2 Power. (except the turn you play this)");
-		Cards card12 = new(12, "Deathlok", "Deathlok", CardType.Attack, 3, 5, "Destroy your other cards at this location.");
+		Card card1 = new(1, "Hawkeys", "Hawkeys", CardType.Attack, 1, 1, "Location next turn, +3 Power");
+		Card card2 = new(2, "Medusa", "Medusa", CardType.Attack, 2, 2, "If this is at middle location, +3 Power");
+		Card card3 = new(3, "Sentinel", "Sentinel", CardType.Attack, 2, 3, "Add another Sentinel to your hand");
+		Card card4 = new(4, "Iron Man", "Iron Man", CardType.Attack, 5, 0, "Your total Power is doubled at this location");
+		Card card5 = new(5, "Hulk", "Hulk", CardType.Attack, 6, 12, "HULK SMASH!");
+		Card card6 = new(6, "Mister Fantastic", "Mister Fantastic", CardType.Attack, 2, 3, "Adjacent locations have +2 Power.");
+		Card card7 = new(7, "Juggernaut", "Juggernaut", CardType.Attack, 3, 3, "If your opponent played Card here this turn, move them randomly.");
+		Card card8 = new(8, "Sandman", "Sandman", CardType.Attack, 5, 4, "Players can only play 1 card a turn");
+		Card card9 = new(9, "Aero", "Aero", CardType.Attack, 5, 8, "Move the last enemy card played this turn to this location.");
+		Card card10 = new(10, "Elektra", "Elektra", CardType.Attack, 1, 1, "Destroy a random enemy 1-Cost card at this location.");
+		Card card11 = new(11, "Nebula", "Nebula", CardType.Attack, 1, 1, "Each turn your opponent doesn't play a card here, +2 Power. (except the turn you play this)");
+		Card card12 = new(12, "Deathlok", "Deathlok", CardType.Attack, 3, 5, "Destroy your other Card at this location.");
 
-		Cards card111 = new(13, "Hawkeys", "Hawkeys", CardType.Attack, 1, 1, "Location next turn, +3 Power");
-		Cards card222 = new(14, "Medusa", "Medusa", CardType.Attack, 2, 2, "If this is at middle location, +3 Power");
-		Cards card333 = new(15, "Sentinel", "Sentinel", CardType.Attack, 2, 3, "Add another Sentinel to your hand");
-		Cards card444 = new(16, "Iron Man", "Iron Man", CardType.Attack, 5, 0, "Your total Power is doubled at this location");
-		Cards card555 = new(17, "Hulk", "Hulk", CardType.Attack, 6, 12, "HULK SMASH!");
-		Cards card666 = new(18, "Mister Fantastic", "Mister Fantastic", CardType.Attack, 2, 3, "Adjacent locations have +2 Power.");
-		Cards card777 = new(19, "Juggernaut", "Juggernaut", CardType.Attack, 3, 3, "If your opponent played cards here this turn, move them randomly.");
-		Cards card888 = new(20, "Sandman", "Sandman", CardType.Attack, 5, 4, "Players can only play 1 card a turn");
-		Cards card999 = new(21, "Aero", "Aero", CardType.Attack, 5, 8, "Move the last enemy card played this turn to this location.");
-		Cards card100 = new(22, "Elektra", "Elektra", CardType.Attack, 1, 1, "Destroy a random enemy 1-Cost card at this location.");
-		Cards card110 = new(23, "Nebula", "Nebula", CardType.Attack, 1, 1, "Each turn your opponent doesn't play a card here, +2 Power. (except the turn you play this)");
-		Cards card120 = new(24, "Deathlok", "Deathlok", CardType.Attack, 3, 5, "Destroy your other cards at this location.");
+		Card card111 = new(13, "Hawkeys", "Hawkeys", CardType.Attack, 1, 1, "Location next turn, +3 Power");
+		Card card222 = new(14, "Medusa", "Medusa", CardType.Attack, 2, 2, "If this is at middle location, +3 Power");
+		Card card333 = new(15, "Sentinel", "Sentinel", CardType.Attack, 2, 3, "Add another Sentinel to your hand");
+		Card card444 = new(16, "Iron Man", "Iron Man", CardType.Attack, 5, 0, "Your total Power is doubled at this location");
+		Card card555 = new(17, "Hulk", "Hulk", CardType.Attack, 6, 12, "HULK SMASH!");
+		Card card666 = new(18, "Mister Fantastic", "Mister Fantastic", CardType.Attack, 2, 3, "Adjacent locations have +2 Power.");
+		Card card777 = new(19, "Juggernaut", "Juggernaut", CardType.Attack, 3, 3, "If your opponent played Card here this turn, move them randomly.");
+		Card card888 = new(20, "Sandman", "Sandman", CardType.Attack, 5, 4, "Players can only play 1 card a turn");
+		Card card999 = new(21, "Aero", "Aero", CardType.Attack, 5, 8, "Move the last enemy card played this turn to this location.");
+		Card card100 = new(22, "Elektra", "Elektra", CardType.Attack, 1, 1, "Destroy a random enemy 1-Cost card at this location.");
+		Card card110 = new(23, "Nebula", "Nebula", CardType.Attack, 1, 1, "Each turn your opponent doesn't play a card here, +2 Power. (except the turn you play this)");
+		Card card120 = new(24, "Deathlok", "Deathlok", CardType.Attack, 3, 5, "Destroy your other cards at this location.");
 
-		List<Cards> listCards = new()
+		List<Card> listCards = new()
 		{
 			card1,
 			card2,
@@ -67,7 +67,7 @@ class Program
 			card12
 		};
 
-		List<Cards> listCards2 = new()
+		List<Card> listCards2 = new()
 		{
 			card111,
 			card222,
@@ -103,7 +103,7 @@ class Program
 		int maxTurn = 6;
 		int turnCounter = 0;
 
-		Dictionary<Players, PlayerData> playerData = gameController.GetPlayerData();
+		Dictionary<Player, PlayerData> playerData = gameController.GetPlayerData();
 		// List<Cards> player1 = gameController.GetCardsOnHand(Player);
 		// List<Cards> player2 = gameController.GetCardsOnHand(Player);
 		while (turnCounter <= maxTurn)
@@ -178,7 +178,7 @@ static class MyExtension
 	{
 		Console.Write(obj);
 	}
-	public static void CardPrinter(Cards cards)
+	public static void CardPrinter(Card cards)
 	{
 		Console.WriteLine($"Id : {cards.GetId()}");
 		Console.WriteLine($"Name : {cards.GetName()}");

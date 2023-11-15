@@ -1,18 +1,18 @@
 namespace lib;
 
 using System.ComponentModel;
-using lib.cards;
+using lib.card;
 using lib.location;
-using lib.players;
+using lib.player;
 
 public delegate void TurnNotification();
 public delegate void ScoreNotification();
 public class GameController
 {
-	private Dictionary<Players, PlayerData> _playersData = new();
+	private Dictionary<Player, PlayerData> _playersData = new();
 
-	private Dictionary<Players, Cards> _listCardsOnLocation = new();
-	private Dictionary<Players, List<Cards>> _listCardsOnDeck = new();
+	private Dictionary<Player, Card> _listCardsOnLocation = new();
+	private Dictionary<Player, List<Card>> _listCardsOnDeck = new();
 	
 	private List<Location> _locations = new();
 
@@ -20,16 +20,16 @@ public class GameController
 
 
 
-	public void AddPlayer(Players players){
+	public void AddPlayer(Player players){
 
 	}
 
 	
-	public void AddCardsToDeck(Players players, PlayerData playerData){
+	public void AddCardsToDeck(Player players, PlayerData playerData){
 		_playersData.Add(players, playerData);
 	}
 
-	public Dictionary<Players, PlayerData> GetPlayerData(){
+	public Dictionary<Player, PlayerData> GetPlayerData(){
 		return _playersData;
 	}
 
@@ -37,9 +37,9 @@ public class GameController
 	// 	location.GetId
 	// }
 
-	public void AddCardToDeck(Players players, int currentTurn){
+	public void AddCardToDeck(Player players, int currentTurn){
 
-		List<Cards> listCard = new();
+		List<Card> listCard = new();
 		if(currentTurn != 1){	
 			_listCardsOnDeck[players].Add(DrawCards(players,currentTurn));
 		}
@@ -47,11 +47,11 @@ public class GameController
 
 	}
 
-	public Dictionary<Players, List<Cards>> GetCardsFromDeck(){
+	public Dictionary<Player, List<Card>> GetCardsFromDeck(){
 		return _listCardsOnDeck;
 	}
 
-	public Cards DrawCards(Players players, int currentTurn){
+	public Card DrawCards(Player players, int currentTurn){
 		Random random = new Random();
 		PlayerData? result;
 		_playersData.TryGetValue(players, out result);
@@ -63,7 +63,7 @@ public class GameController
 		// }
 	}
 
-	public void CardsOnDeck(Dictionary<Players, PlayerData> playerData, Cards cards){
+	public void CardsOnDeck(Dictionary<Player, PlayerData> playerData, Card cards){
 		// if(playerData.Contains(cards)){
 			
 		// }
@@ -74,15 +74,15 @@ public class GameController
 
 	}
 
-	public void TurnManager(Players players){
+	public void TurnManager(Player players){
 		// _playersData[players] = 
 	}
 
-	public Dictionary<Players, PlayerData> GetPlayersData(){
+	public Dictionary<Player, PlayerData> GetPlayersData(){
 		return _playersData;
 	}
 	
-	public void Surrender(Players players)
+	public void Surrender(Player players)
 	{
 		_playersData[players].SetStatus(PlayerStatus.Lose);
 		string result = _playersData[players].GetStatus().ToString();

@@ -1,10 +1,10 @@
-namespace lib.players;
+namespace lib.player;
 
-public class Players : IPlayers
+public class Player : IPlayer
 {
 	private int _id;
 	private string _name;
-	public Players(int id, string name){
+	public Player(int id, string name){
 		_id = id;
 		_name = name;
 	}

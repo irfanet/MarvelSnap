@@ -1,4 +1,4 @@
-namespace lib.players;
+namespace lib.player;
 
 public enum PlayerStatus
 {

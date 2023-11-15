@@ -1,6 +1,6 @@
-namespace lib.cards;
+namespace lib.card;
 
-public interface ICards
+public interface ICard
 {
 	int GetId();
 	string GetImage();
